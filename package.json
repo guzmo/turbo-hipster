@@ -1,0 +1,44 @@
+{
+  "name": "builds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "jsxhint --babel src",
+    "watch": "watchify -d -v -t babelify -t [ envify --NODE_ENV development ] src/index.jsx -o public/app.js",
+    "build": "npm run -s build:styles && npm run -s build:app && npm run -s build:icons",
+    "build:styles": "lessc src/app.less > public/app.css",
+    "build:app": "browserify -d -t babelify -t [ envify --NODE_ENV development ] src/index.jsx > public/app.js",
+    "build:icons": "rm -rf public/css && rm -rf public/fonts && cp -r node_modules/mdi/fonts public/ && cp -r node_modules/mdi/css public/",
+    "dist": "npm run -s build:styles && npm run -s build:icons && npm run -s dist:app && npm run -s dist:layout",
+    "dist:app": "browserify -t babelify -t [ envify --NODE_ENV production ] -t uglifyify src/index.jsx > public/app.min.js",
+    "dist:layout": "sed 's/app.js/app.min.js/' src/index.html > public/index.html"
+  },
+  "author": "Joakim Carlstein",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^4.7.5",
+    "baobab": "^0.3.2",
+    "body-parser": "^1.12.0",
+    "classnames": "^1.1.4",
+    "compression": "^1.4.1",
+    "express": "^4.12.2",
+    "material-ui": "^0.7.1",
+    "mdi": "^0.9.22-alpha",
+    "moment": "^2.9.0",
+    "react": "^0.12.2",
+    "react-router": "^0.12.4",
+    "react-tap-event-plugin": "^0.1.4",
+    "babelify": "^5.0.4",
+    "browserify": "^9.0.3",
+    "envify": "^3.3.0",
+    "less": "^2.4.0",
+    "reactify": "^1.0.0",
+    "uglifyify": "^3.0.1",
+    "request": "^2.53.0"
+  },
+  "devDependencies": {
+    "jsxhint": "^0.12.1",
+    "watchify": "^2.4.0"
+  }
+}

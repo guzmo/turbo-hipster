@@ -1,0 +1,57 @@
+body {
+  background-color: #ececec;
+}
+
+.full-width-section {
+  padding: @desktop-gutter;
+  .clearfix();
+
+  max-width: 960px;
+  margin: 0 auto;
+
+  .full-width-section-content {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  @media @device-small {
+    padding-top: (@desktop-gutter * 2);
+    padding-bottom: (@desktop-gutter * 2);
+  }
+
+  @media @device-large {
+    padding-top: (@desktop-gutter * 3);
+    padding-bottom: (@desktop-gutter * 3);
+  }
+}
+
+.nav-header {
+  cursor: pointer;
+  .mui-font-style-headline;
+  .mui-text-full-white;
+  line-height: @app-bar-height;
+  .mui-font-weight-light;
+  background-color: @primary-1-color;
+  padding-left: @desktop-gutter;
+  padding-top: 0;
+  margin-bottom: @desktop-gutter-mini;
+}
+.build {
+  // padding: @desktop-gutter;
+  background-color: white;
+
+  .mui-toolbar {
+    background-color: transparent;
+  }
+
+  .code {
+    border-top: 1px solid rgba(0,0,0, 0.1);
+    border-bottom: 1px solid rgba(0,0,0, 0);
+    background-color: #f8f8f8;
+    padding: @desktop-gutter;
+  }
+}
+
+.build + .build {
+  margin-top: @desktop-gutter;
+}
