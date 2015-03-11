@@ -16,4 +16,4 @@ ENV NODE_ENV production
 
 EXPOSE 3000
 
-CMD pm2 start --name app /app/src/index.js && pm2 logs app
+CMD pm2 start --name app /app/index.js && pm2 logs app
