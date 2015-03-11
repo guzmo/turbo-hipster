@@ -18,7 +18,6 @@ var routes = (
 
 Router.run(routes, (Handler) => React.render(<Handler />, document.body));
 
-
 // Refresh builds each 5 seconds:
 var fetchBuilds = () => api.getBuilds();
 setTimeout(fetchBuilds, 5000);
