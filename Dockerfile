@@ -8,7 +8,7 @@ RUN cd /app && npm install --production
 
 ADD . /app
 
-RUN npm run dist
+RUN cd /app && npm run dist
 
 WORKDIR /app
 
