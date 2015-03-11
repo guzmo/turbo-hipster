@@ -20,14 +20,21 @@ var BuildsListView = React.createClass({
 
   render() {
     var build = this.props.build;
-    var icon = cx('mdi', {
-      'mdi-check': build.isSuccessful,
-      'mdi-alert-circle': !build.isSuccessful && build.nrOfAttempts,
-      'mdi-timelapse': !build.isSuccessful && !build.nrOfAttempts,
-      'good': build.isSuccessful,
-      'error': !build.isSuccessful && build.nrOfAttempts,
-      'notice': !build.isSuccessful && !build.nrOfAttempts,
+
+    var status = cx({
+      'good': build.state === 'SUCCESS',
+      'error': build.state === 'FAILURE',
+      'notice': !build.state || build.state === 'BUILDING' || build.state === 'RETRYING'
     });
+
+    var icon = cx(status, 'mdi', {
+      'mdi-check': build.state === 'SUCCESS',
+      'mdi-alert-circle': build.state === 'FAILURE',
+      'mdi-timelapse': build.state === 'BUILDING',
+      'mdi-history': build.state === 'RETRYING',
+      'mdi-timer': !build.state || build.state === 'WAITING'
+    });
+
     var mountUrl = 'http://xyz.softhouse.se/' + (build.endpoint || '');
     var mountPoint =
       build.isSuccessful ?
@@ -43,6 +50,9 @@ var BuildsListView = React.createClass({
         <Toolbar>
           <ToolbarGroup key={0} float="left">
             <FontIcon className={icon} />
+            <span className={status}>
+              <strong>&nbsp;{build.state || 'WAITING'}</strong>
+            </span>
             <span className="mui-toolbar-title">
               <a href={build.repo}>{build.fullName}</a>
               {mountPoint}
