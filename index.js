@@ -13,6 +13,7 @@ app.use(compression());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// STUFF ONLY FOR DEV
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   builds = [
     {"_id":"54fdb90c6e5beb170090bc8a","fullName":"Softhouse/laughing-batman","name":"laughing-batman","repo":"https://github.com/Softhouse/laughing-batman.git","commit":"7eea35965dfa15ca6abb09a956986ce0e70da2ed","endpoint":"api","createdAt":"2015-03-09T15:15:24.027Z","buildAt":"2015-03-09T15:18:34.061Z","nrOfAttempts":1,"isSuccessful":false,"message":"The shit hit the fan\neverything is down...","pusher":{"name":"joakimbeng","email":"joakim@klei.se"}},
