@@ -3,7 +3,8 @@ var request = require('request');
 var assign = require("react/lib/Object.assign");
 var state = require('../state');
 
-const ENDPOINT = location.protocol + '//xyz/api/buildqueue';
+const ENDPOINT = location.protocol + '//' + location.host + '/api/buildqueue';
+console.log("location.host" + location.host);
 
 exports.getBuilds = function () {
   return new Promise(function (resolve, reject) {
